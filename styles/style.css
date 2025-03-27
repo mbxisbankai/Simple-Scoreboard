@@ -153,20 +153,3 @@ body.dark-mode {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
-    
-    .toggle-switch {
-        width: 40px;
-        height: 20px;
-    }
-    
-    .slider:before {
-        width: 15px;
-        height: 15px;
-        bottom: 2px;
-        left: 2px;
-    }
-}
