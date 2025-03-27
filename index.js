@@ -11,6 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTeams(data);
     })
     .catch(error => console.error('Error fetching teams:', error));
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check localStorage for saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.checked = true;
+    }
+
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
+    });
 })
 
 function renderTeams(data){
