@@ -112,7 +112,6 @@ td {
     height: 0;
 }
 
-/* The slider (toggle button) */
 .slider {
     position: absolute;
     cursor: pointer;
