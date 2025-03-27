@@ -112,7 +112,7 @@ function renderTeams(data){
 
 // Updating Points using PATCH requests
 function updatePoints(team){
-    fetch(`${myURL}${team.id}`, {
+    fetch(`${myURL}/${team.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
