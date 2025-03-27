@@ -1,6 +1,8 @@
+const myURL = 'https://scoreboard-api-server.onrender.com/api/teamData';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Fetching the teamData object from the db.json file: GET Request
-    fetch('https://scoreboard-api-server.onrender.com/api/teamData')
+    fetch(myURL)
     .then(res => res.json())
     .then(data => { 
 
@@ -110,7 +112,7 @@ function renderTeams(data){
 
 // Updating Points using PATCH requests
 function updatePoints(team){
-    fetch(`https://scoreboard-api-server.onrender.com/api/teamData/team.id`, {
+    fetch(`${myURL}/${team.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
