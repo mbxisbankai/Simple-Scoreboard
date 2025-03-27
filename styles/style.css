@@ -1,0 +1,98 @@
+@import url('https://fonts.cdnfonts.com/css/snowy-christa');
+
+@font-face {
+    font-family: 'Advanced LED Board';
+    src: url('../fonts/advanced_led_board-7.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Digital Clock Font';
+    src: url('../fonts/DigitalDisplayRegular-ODEO.ttf') format('truetype');
+}
+
+body {
+    padding: 30px;
+    background-color: #0D0D0D;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Advanced LED Board', sans-serif;
+    color: #00E1FF;
+    font-size: xx-large;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+    font-size: large;
+}
+
+th {
+    font-family: 'Advanced LED Board', sans-serif;
+    background-color: gold;
+    font-weight: bold;
+    font-size: large;
+    color: #0D0D0D;
+}
+
+#plus {
+    border-radius: 10px;
+    background-color: rgb(233, 84, 84);
+    border-width: 0.5px;
+}
+
+#minus {
+    border-radius: 10px;
+    background-color: lightgreen;
+    border-width: 0.5px;
+}
+
+#reduce {
+    color: rgb(109, 230, 109);
+}
+
+#add {
+    color: rgb(233, 84, 84);
+}
+
+.green-button {
+    color: lightgreen;
+}
+
+.red-button {
+    color:rgb(233, 84, 84);
+}
+
+.points-button {
+    border-radius: 50px;
+    border-width: 0.5px;
+    background-color: gold;
+}
+
+td {
+    color: #00E1FF;
+    font-family: 'Digital Clock Font', sans-serif;
+    font-size: larger;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d0d0d; 
+    color: #00E1FF;
+    text-align: center;
+    padding: 10px;
+    font-size: small;
+}
