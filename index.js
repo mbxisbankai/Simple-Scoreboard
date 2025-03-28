@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'light');
         }
     });
+
+    createNewTeam();
+    handleReset();
 })
 
 function renderTeams(data){
@@ -43,23 +46,28 @@ function renderTeams(data){
         const addOrReduce = document.createElement('td');
         const position = document.createElement('td');
         const loseOrgain = document.createElement('td'); // New Table Data Element
+        const deleteTeamButton = document.createElement('button');
         const pointsReducebtn = document.createElement('button');
         const pointsIncreasebtn = document.createElement('button');
         const pointsButton = document.createElement('button');
         const space = document.createTextNode(' ');
+       
+        deleteTeamButton.addEventListener('click', () => handleDelete(team))
+        deleteTeamButton.classList.add('delete-team-button');
+        deleteTeamButton.textContent = `Delete`;
 
         teamName.textContent = team.name;    // Team name in json file
         teamPoints.textContent = team.points;  // Team points in the json file: Default - 540;
         position.textContent = index === 0 ? '🏆' : index + 1;
 
-        pointsReducebtn.textContent = '↓';
+        pointsReducebtn.textContent = '↓ Reduce';
         pointsReducebtn.id = 'minus';
         pointsReducebtn.addEventListener('click', () => {
             team.points -= 10;
             teamPoints.textContent = team.points;
             updatePoints(team);
         })
-        pointsIncreasebtn.textContent = '↑';
+        pointsIncreasebtn.textContent = '↑ Add';
         pointsIncreasebtn.id = 'plus';
         pointsIncreasebtn.addEventListener('click', () => {
             team.points += 10;
@@ -67,8 +75,9 @@ function renderTeams(data){
             updatePoints(team);
         })
 
+
         pointsButton.classList.add('points-button');
-        pointsButton.textContent = '⚬';
+        pointsButton.textContent = '⚬Press for Award';
         pointsButton.addEventListener('click', () => {
                 if(index === 0){
                     team.points -= 50;
@@ -112,6 +121,8 @@ function renderTeams(data){
                     updatePoints(team);
                 }
         })
+
+
         loseOrgain.appendChild(pointsButton);
 
         addOrReduce.appendChild(pointsReducebtn);
@@ -123,10 +134,72 @@ function renderTeams(data){
         teamRow.appendChild(teamPoints);
         teamRow.appendChild(addOrReduce); 
         teamRow.appendChild(loseOrgain);
+        teamRow.appendChild(deleteTeamButton)
 
         teamTableBody.appendChild(teamRow);
     })
 }
+
+function createNewTeam(){
+    const inputField = document.querySelector('#team-name-input');
+    const addTeamButton = document.querySelector('#add-team-btn');
+
+    addTeamButton.addEventListener('click', () => {
+    const newTeamName = inputField.value;
+    if (newTeamName === ""){
+        alert('Enter a valid team name');
+        return;
+    }
+    const newTeam = {
+        name: newTeamName,
+        points: 540
+    };
+
+    handleNewTeam(newTeam);
+    
+    })
+}
+
+
+function handleReset() {
+    const resetBtn = document.querySelector('#reset-button');
+
+    resetBtn.addEventListener('click', () => {
+        fetch(myURL)
+            .then(res => res.json())
+            .then(data => {
+                const updatePromises = data.map(team => {
+                    return fetch(`${myURL}/${team.id}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ points: 540 }) // Reset points to 540
+                    });
+                });
+
+        
+                Promise.all(updatePromises)
+                    .then(() => location.reload())
+                    .catch(error => console.error('Error resetting points:', error));
+            })
+            .catch(error => console.error('Error fetching teams:', error));
+    });
+}
+
+// Creating new teams using POST requests
+function handleNewTeam(newTeam){
+    fetch(myURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newTeam)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
+
 
 // Updating Points using PATCH requests
 function updatePoints(team){
@@ -139,4 +212,16 @@ function updatePoints(team){
     })
     .then(res => res.json())
     .then(data => console.log(data))
+}
+
+function handleDelete(team){
+    fetch(`${myURL}/${team.id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(() => location.reload())
+    .then(res => res.json())
+    .then(data => console.log(`Team Successfully Deleted`))
 }

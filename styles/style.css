@@ -57,13 +57,6 @@ th {
     border-width: 0.5px;
 }
 
-#reduce {
-    color: rgb(109, 230, 109);
-}
-
-#add {
-    color: rgb(233, 84, 84);
-}
 
 .green-button {
     color: lightgreen;
@@ -153,3 +146,39 @@ body.dark-mode {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+#add-teams {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+#reset-button {
+    border-radius: 10px;
+    font-family:  'Advanced LED Board', sans-serif;
+    background-color: rgb(233, 84, 84);
+}
+
+#add-team-btn {
+    border-radius: 10px;
+    font-family:  'Advanced LED Board', sans-serif;
+    background-color: rgb(214, 209, 209);
+}
+
+#team-name-input {
+    border-radius: 10px;
+    font-family:  'Snowy-Christa', sans-serif;
+    background-color: rgb(214, 209, 209);
+    text-align: center;
+    max-height: 200px;
+    color: black;
+    font-size: 16px;
+    height: 30px;
+}
+
+.delete-team-button {
+    border-radius: 10px;
+    font-family:  'Advanced LED Board', sans-serif;
+    background-color: rgb(233, 84, 84);
+}
