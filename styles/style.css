@@ -132,7 +132,7 @@ td {
 
 
 input:checked + .slider {
-    background-color: #4CAF50;
+    background-color: gold;
 }
 
 input:checked + .slider:before {
