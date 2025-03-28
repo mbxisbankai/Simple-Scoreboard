@@ -46,6 +46,7 @@ function renderTeams(data){
         const addOrReduce = document.createElement('td');
         const position = document.createElement('td');
         const loseOrgain = document.createElement('td'); // New Table Data Element
+        const deleteButton = document.createElement('td');
         const deleteTeamButton = document.createElement('button');
         const pointsReducebtn = document.createElement('button');
         const pointsIncreasebtn = document.createElement('button');
@@ -122,7 +123,7 @@ function renderTeams(data){
                 }
         })
 
-
+        deleteButton.appendChild(deleteTeamButton);
         loseOrgain.appendChild(pointsButton);
 
         addOrReduce.appendChild(pointsReducebtn);
@@ -134,7 +135,7 @@ function renderTeams(data){
         teamRow.appendChild(teamPoints);
         teamRow.appendChild(addOrReduce); 
         teamRow.appendChild(loseOrgain);
-        teamRow.appendChild(deleteTeamButton)
+        teamRow.appendChild(deleteButton)
 
         teamTableBody.appendChild(teamRow);
     })
